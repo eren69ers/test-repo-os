@@ -7,7 +7,7 @@
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8082:8082 springboot/sample-demo
+# docker run -i --rm -p 8081:8081 springboot/sample-demo
 ####
 FROM maven:3.8.1-openjdk-17-slim
 
@@ -23,5 +23,5 @@ RUN mvn package -Dmaven.test.skip=true
 FROM openjdk:11-jdk
 COPY --from=0 /build/target/openshift-demo-1.0.0.jar /app/target/openshift-demo-1.0.0.jar
 
-EXPOSE 8082
-ENTRYPOINT [ "java", "-jar", "/app/target/openshift-demo-1.0.0.jar", "--server.port=8082" ]
+EXPOSE 8081
+ENTRYPOINT [ "java", "-jar", "/app/target/openshift-demo-1.0.0.jar", "--server.port=8081" ]
